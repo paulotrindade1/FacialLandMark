@@ -48,11 +48,8 @@ for (i, rect) in enumerate(rects):
  
 	# loop over the (x, y)-coordinates for the facial landmarks
 	# and draw them on the image
-	i = 1
 	for (x, y) in shape:
-		print("Facial landmarks: ", i)
 		cv2.circle(image, (x, y), 1, (255, 0, 0), -1)
-		i = i + 1
  
 # show the output image with the face detections + facial landmarks
 cv2.imshow("Output", image)
