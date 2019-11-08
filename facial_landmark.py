@@ -23,7 +23,7 @@ predictor = dlib.shape_predictor(args["shape_predictor"])
 
 # load the input image, resize it, and convert it to grayscale
 image = cv2.imread(args["image"])
-image = imutils.resize(image, width=800)
+image = imutils.resize(image, width=500)
 gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
 
 # detect faces in the grayscale image
@@ -45,7 +45,7 @@ for (i, rect) in enumerate(rects):
 
 	# show the face number
 	cv2.putText(image, "Face #{}".format(i + 1), (x - 10, y - 10),
-		cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 0, 0), 2)
+		cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 0, 255), 2)
 
 	# loop over the (x, y)-coordinates for the facial landmarks
 	# and draw them on the image
@@ -71,7 +71,10 @@ for (i, rect) in enumerate(rects):
 
 	print(x, " ", y)
 	distance = math.hypot(x, y)
-
+	
+	cv2.line(image, (x1, y1), (x2, y2), (255, 0, 0), thickness=1, lineType=cv2.LINE_AA)
+	cv2.putText(image, "test", (x1 + 5, y1 + 5),
+                cv2.FONT_HERSHEY_PLAIN, 1, (0, 0, 255), 2)
 	print("Distancia dos pontos Sn e Ls: ", distance)
 # show the output image with the face detections + facial landmarks
 cv2.imshow("Output", image)
