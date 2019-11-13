@@ -50,12 +50,14 @@ for (i, rect) in enumerate(rects):
 	# loop over the (x, y)-coordinates for the facial landmarks
 	# and draw them on the image
 
-	ponto1 = int(input("Informe o ponto 1: "))
-	ponto2 = int(input("Informe o ponto 2: "))
+	ponto1 = 33 # Sn
+	ponto2 = 51 # Ls
 	for (x, y) in shape:
-		cv2.circle(image, (x, y), 1, (0, 0, 0), -1)
-
-
+		cv2.circle(image, (x, y), 2, (0, 0, 255), -1)
+	
+	print("+----------------------------------+")
+	print("|       Relatório das medidas      |")
+	print("+----------------------------------+")
 	print("Sn: ", shape[ponto1])
 	print("Ls: ", shape[ponto2])
 	x1 = shape[ponto1][0]
@@ -63,8 +65,8 @@ for (i, rect) in enumerate(rects):
 
 	x2 = shape[ponto2][0]
 	y2 = shape[ponto2][1]
-	cv2.circle(image, (x1, y1), 1, (0, 255, 0), -1)
-	cv2.circle(image, (x2, y2), 1, (0, 255, 0), -1)
+	cv2.circle(image, (x1, y1), 3, (0, 255, 0), -1)
+	cv2.circle(image, (x2, y2), 3, (0, 255, 0), -1)
 
 	x = x2 - x1
 	y = y1 - y2
@@ -72,10 +74,9 @@ for (i, rect) in enumerate(rects):
 	print(x, " ", y)
 	distance = math.hypot(x, y)
 	
-	cv2.line(image, (x1, y1), (x2, y2), (255, 0, 0), thickness=1, lineType=cv2.LINE_AA)
-	cv2.putText(image, "test", (x1 + 5, y1 + 5),
-                cv2.FONT_HERSHEY_PLAIN, 1, (0, 0, 255), 2)
-	print("Distancia dos pontos Sn e Ls: ", distance)
+	cv2.line(image, (x1, y1), (x2, y2), (0,255,0), 2) # Draw line
+	
+	print("Medida dos pontos Sn e Ls: ", distance)
 # show the output image with the face detections + facial landmarks
 cv2.imshow("Output", image)
 cv2.waitKey(0)
